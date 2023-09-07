@@ -1,8 +1,9 @@
 body {
-    font: 20px Montserrat, sans-serif;
+    font-family: 20px Gill-Sans, sans-serif;
     line-height: 1.8;
     color: black;
     padding-top: 0px !important;
+    background-color: lightgrey;
   }
 
 p {font-size: 16px;}
@@ -16,4 +17,37 @@ p {font-size: 16px;}
 .nav-title{
   margin-left: 15px;
   margin-right: 15px;
+  color: navy;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.nav-link{
+  color: forestgreen;
+}
+
+.link{
+  color: navy;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 2rem;
+  background-color: lightgray;
+  margin-top: 30px;
+  }
+.card {
+  border-radius: 0%;
+  background-color:lightgray;
+  border: navy;
+  padding: .5rem;
+  overflow:hidden
+  }
+
+.img{
+  height:300px;
+  width:500px;
 }
