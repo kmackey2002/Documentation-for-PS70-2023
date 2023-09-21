@@ -68,9 +68,27 @@
     First of all, I wanted to make my box out of wood but forgot to change the material of the laser cutter from matboard to wood, so it didn't end up cutting all the way through the first time.  After I fixed this, I tried to shrink the dimensions of my
     box by using the Scale feature in Rhino before printing to UCP.  This ended up causing some issues where the notches of the base were no longer deep enough, and so the sides of the box stick out a bit.
     I realize now that this is because while the notches were scaled down proportionally, the physical width of the wood material obviously did not change, making the sides of the box too thick for the notches of 
-    the base.  Additionally, I had trouble properly accounting for kerf, so the box does not fit together tightly and I will probably have to use glue.  Nevertheless, I am happy with how it turned out, 
+    the base.  Additionally, I had trouble properly accounting for kerf, so the box does not fit together tightly and I will probably have to use glue to hold it together.  Nevertheless, I am happy with how it turned out, 
     and eager to try again later.
   </p>
   <img class="image ideabody" src="jointbox.png">
-  
+  <h4 class="text ideabody">Part 3: Fusion Tutorial</h4>
+  <p class="text ideabody">I followed <a href="https://www.youtube.com/watch?v=tvJE0wFBgZM">this tutorial</a> to learn how to make a bolt. This taught me several useful skills that I employed later on when
+    modeling my household objects.  For example, I learned how it is possible to extrude one shape through another shape (in this case, extruding a circle through the hexagonal head of the bolt, thus 
+    making a cylinder that serves as the stem of the bolt).  I also learned how to add thread to objects and how to modify this thread, a skill I used to create the test tube cap in my own models.
+    Additionally, I learned how to create the diagonal face on the edges of the hexagonal head of the screw, by drawing a triangle on the corner of each face and then using the Revolve function to shear 
+    this triangle off each face of the hexagon.  Lastly, this tutorial taught me how to change the material of my finished object, so I decided to change my bolt to solid gold just for fun.  Here is a picture of my completed bolt.
+    </p>
+<img class="image ideabody" src="bolt.png">
+<img class="image ideabody" src="bolt2.png">
+<h4 class="text ideabody">Part 4: Modelling Household Objects</h4>
+<p class="text ideabody">For my first object, I decided to model a Falcon tube I found in my lab.  Here are the parameters I found by using the calipers to measure different dimensions of the tube:</p>
+<img class="image ideabody" src="parameters_testtube.png">
+<p class="text ideabody">I made the body of the tube by creating a ring with outer diameter and inner diameter, then extruding it to the height of the tube body.  This created a hollow cylinder (I also could have used the shell
+    function for this).  Then I added the base of the tube by putting a circle at the bottom and extruding it to the thickness of the tube walls.  Next, I added the cap.  I did this by first creating another hollow cylinder with outer
+diameter equal to the outer diameter of the cap, and inner diameter equal to the inner diameter of the cap.  I added thread to the inside of this cylinder.  Then I put the top on the cap using the same method I used to add 
+a bottom base for the tube.  I put the finishing touches on my object by changing the material of the tube to be clear acrylic and the material of the cap to be opaque plastic.  Here is a picture of my model alongside
+its real life counterpart.</p>
+<img class="image ideabody" src="">
+<img class="image ideabody" src="">
 
