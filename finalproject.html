@@ -20,7 +20,9 @@
 
   <body>
     <h2 class="text ideabody"><font color="navy">Final Project Proposal</font></h2>
-    <h4  class="text ideabody">Smart Roof: Temperature Regulating Tiles</h4>
+    <h3  class="text ideabody">Smart Roof: Temperature Regulating Tiles</h3>
+    <h4 class="text ideabody"><font color="navy">9.12.2023</font></h4>
+    <h4 class="text ideabody">Initial Project Proposal</h4>
     <ul  class="text ideabody">Black rooves absorb heat, which raises the temperature of the building, while white rooves reflect heat,
       keeping the building cooler.  For maximum temperature efficiency year round, I propose a tile that has one black face (of an
       absorbant material) and one white face (of a reflective material).  The tile will have temperature and light sensors which allow
@@ -39,6 +41,73 @@
     <ul class="text ideabody">The tiles will need to be water, sun, and weather resistant.</ul>
     <ul class="text ideabody">The tiles should all flip simultaneously to prevent them from hitting and blocking each other. </ul>
     <ul class="text ideabody">Potential of having the tiles adjust angle as well to maximize sun exposure in cold times.</ul>
+    <h4 class="text ideabody"><font color="navy">10.11.2023</font></h4>
+    <h4 class="text ideabody">Preliminary 3D Model</h4>
+    <p class="text ideabody">The "smart roof" will consist of columns of shutters, where all the slats are linked together by a central shaft (dowel).
+      The dowel will be pulled up or down by a servo motor perched on top of the column: the rotation of the arm of the servo upwards will pull the dowel up,
+      thus closing the shutters, while the movement of the arm in the other direction will push the dowel down, closing the shutters but with the opposite side of the 
+      slats facing out.  This is important because I will have one face of the shutters painted black (a heat absorbant color), while the other face
+      will be painted white (heat reflective).  The system will know whether to pull the dowel up or down based on light and temperature sensors located on the
+      frame of the shutter.  When the light/heat is above a certain threshold (which I will likely determine by a function that takes both heat and light into account),
+      the motor will move such that the white side faces out.  Below the threshold, the black side will be facing out.  This will then help temperature regulate 
+      the space beneath the roof, whether that be a bus stop shelter, a house, or perhaps even a vehicle.  Here is the 3D model I created in Fusion. 
+    </p>
+    <img class="diagram ideabody" src="shutters_3d.png">
+    <p class="text ideabody">In this diagram, the gray box on the upper left corner of the frame schematically represents the temperature and light sensors.  One 
+      consideration I have to keep thinking about is that it would likely be more practical to have the temperature sensor measure the temperature of the room underneath 
+      the roof: after all, if it is cold outside but the room happens to be hosting a party with lots of body heat, perhaps it would be better for the roof to reflect heat to cool
+      the building, rather than absorb sunlight.  I didn't include it in the diagram, but there will be wires linking the sensor to the servo motor, depicted on top 
+      of the frame here.  I will also need to figure out where to locate the breadboard and Arduino.  Preferably, I will be able to use a smaller version 
+      of these so it isn't so bulky, but either way I will probably need to build a small housing for the circuitry which will be attached to the frame.
+    </p>
+    <p class="text ideabody">In terms of the motor aspect of this system, the schematic shown here does not accurately represent what a servo motor looks like.  My idea is to have 
+      the arm of the servo motor positioned such that its rotation is exactly parallel to the vertical path the dowel will take.  It will be somehow attached to the dowel (for example, with 
+      something like a straw which can be easily tuned to the exact length necessary, but preferably more elegant in appearance.  However, I am not sure if a straw 
+      might be too stiff to allow for the servo to properly pull the dowel--this is something I will need to play around with).  Thus, when the servo motor
+      swivels upward, it will pull the dowel shaft upwards in an arcing motion.  When the servo arm swivels downward, it will push the dowel shaft The arc motion 
+      is important because if the dowel were merely jerked straight upward, the slats would not turn properly: when opening these shutters, you need to pull the dowel out a
+      little and then up in order to accomodate the arc of the slats themselves (as they do not have a constant rotational diameter). 
+    </p>
+    <p class="text ideabody">Each slat will be attached to two pins on either end (which I will probably screw into the wood), which will slot into evenly spaced holes in the 
+      frame.  The holes have to be big and deep enough to allow for these slats to smoothly rotate.  Additionally, each slat will be attached to the dowel by a set of interlocking 
+      threaded eyelets, which will allow for more free motion between the dowels and the slats.  
+    </p>
+    <p class="text ideabody">This model shown here only depicts one column of shutters.  I envision my final project including multiple columns all next to each other and attached to each other,
+      something large enough to cover a small roof.  The other advantage of having multiple columns attached together is that each column doesn't necessarily have to be flipped to
+      the same color.  This could potentially allow for more fine-tuned temperature regulation.  I still have to figure out what I want the scale of each column to be.
+    </p>
+    <p class="text ideabody">This is still quite a rough idea and I had a pretty difficult time modeling everything properly in Fusion, so this model definitely isn't fully accurate.
+      However, it does capture the general idea, and it was helpful for me to make to get a better idea of how everything will fit together spatially.
+    </p>
+    <h4 class="text ideabody">Bill of Materials</h4>
+    <ul class="text ideabody">
+      <li>thin wood (for the slats)</li>
+      <li>thick wood (for the frame)</li>
+      <li>dowel (for central shaft)</li>
+      <li>threaded eyelets</li>
+      <li>pins (for slat axle)</li>
+      <li>black & white paint</li>
+      <li>heat sensor</li>
+      <li>light sensor</li>
+      <li>breadboard & Arduino</li>
+      <li>Servo motor (most likely)</li>
+    </ul>
+    <h4 class="text ideabody">Rough Timeline</h4>
+    <ul class="text ideabody">
+      <li>October 12-26 - build small-scale shutter system and get it working manually</li>
+      <li>October 26-November 10 - build full-scale shutter system and get it working manually</li>
+      <li>November 10-30 - attach motor and sensor; get electrical components working</li>
+      <li>December - build additional working shutter columns; finalize and test everything; calculate thresholds for motor activation</li>
+    </ul>
+
+
+
+
+
+
+
+
+
 
 
 
