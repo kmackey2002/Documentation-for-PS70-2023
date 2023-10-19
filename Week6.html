@@ -59,7 +59,8 @@
 <img class="diagram ideabody" src="light_codeVoid.png">
 <p class="text ideabody">I set up my code with two classes: one called LightSensor, which organizes all the code related to the photoresistor, and one called LED, organizing all the code related to the LED output.  The LightSensor class essentially reads the voltage output of the photoresistor,
     and the LED class has an 'on' function and an 'off' function.  My code is set up so that the lightbulb turns on when the photoresistor senses light above a certain threshold, and the bulb turns off when light is below that threshold.  I realize now that it would make more sense for the 
-    lightbulb to turn on in low light, but I did not think of that at the time.  Here is a video of the testing of the sensor.
+    lightbulb to turn on in low light, but I did not think of that at the time.  Here is a video of the testing of the sensor.  As you can see, the lightbulb is default on because the ambient light in the room is above my threshold.  But when I put my finger over the photoresistor, the light 
+    being detected drops below the threshold, and the LED lightbulb turns off.
 </p>
 <video class="img ideabody" controls>
     <source src="led_light.mp4" type="video/mp4">
