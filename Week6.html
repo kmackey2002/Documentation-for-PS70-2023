@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<title>Week 6</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link href="./style.css" rel="stylesheet">
+
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div style="align-items: left; justify-content:left;" class="container-fluid">
+      <h3 class="nav-title">PS70: Intro to Digital Fabrication</h3>
+      <div class="navbar-nav">
+        <h4><a class="nav-link" href="./index.html">Home</a></h4>
+        <h4><a class="nav-link" href="./about.html">About</a></h4>
+        <h4><a class="nav-link" href="./finalproject.html">Final</a></h4>
+      </div>
+    </div>
+  </nav>
+
+<h3 class="text ideabody">Week 6: Sensors & Electronic Input Devices </h3>
+<h4 class="text ideabody">Part 1: Heat Sensor</h4>
+<p class="text ideabody">Since my final project has to be able to sense temperature, I decided to try to make an extremely rudimentary heat sensor using capacitive sensing.  The capacitance of a capacitor--and hence, the voltage being passed through
+    and read by the Arduino--depends on the distance between the two capacitors.  I thus needed to find a substance to separate the capacitors that would vary in size based on its temperature.  Since air expands when heated, I decided to use an inflated
+    balloon and attach the capacitors to each side of it.  The idea was that increased temperature would cause air inside the balloon to expand, thus increasing the distance between the two capacitors and decreasing the voltage being read by the Arduino.
+    This was my setup:
+</p>
+<img class="diagram ideabody" src="heat_balloon.png">
+<p class="text ideabody">Here is my schematic, as well as an image of the way my Arduino is set up.
+</p>
+<img class="image ideabody" src="balloon_schematic.png">
+<img class="image ideabody" src="ard_balloon.png">
+<p class="text ideabody">
+    Here is my code:
+</p>
+<img class="diagram ideabody" src="balloon_code.png">
+<p class="text ideabody">I tested/calibrated my sensor by holding a heat gun next to my balloon for a continuous period of time, and checking the voltage reading at various set intervals.  The good news was that the values the sensor was reading did vary based
+    on the amount of time the system was exposed to the heat gun.  However, it did not vary as I expected: rather than the balloon expanding with increased heat, the balloon actually began to melt, which brought the two capacitors closer together.  Thus, the 
+    voltage reading in fact increased the hotter it got.  After 90 seconds of holding the heat gun up, the balloon had melted to the point where it was no longer possible to continue the calibration experiment.  
+</p>
+<img class="image ideabody" src="balloon.png">
+<p class="text ideabody">Here is a plot of my data.
+</p>
+<img class="image ideabody" src="heat_reading.png">
+<p class="text ideabody">The relationship between the signals recorded by the microcontroller and the amount of time the heat gun was on seems to be linear.  It would have been better to graph the reading of the microcontroller as a function of the temperature of
+    the balloon; however, I did not have a way to measure the temperature, and so I used length of time the heat gun was on as a proxy for temperature.  Most likely, the relationship of the microcontroller reading to the temperature itself would not be a linear relationship,
+    because I doubt the balloon warms up linearly as a function of heat gun time.  
+</p>
+<h4 class="text ideabody">Part 2: Light Sensor</h4>
+<p class="text ideabody">My final project also has to be able to sense light, so for my second sensor I decided to set up a light sensor using a photoresistor.  I also included an output device in the form of an LED that would light up according to the value being read by the 
+    microcontroller.  Here is my setup:
+</p>
+<img class="diagram ideabody" src="light_setup.png">
+<p class="text ideabody">Here is my schematic.</p>
+<img class="image ideabody" src="light_schematic.png">
+<p class="text ideabody">Thanks to a lot of much-appreciated help from Bobby, I finally figured out how to set up my Arduino code, including classes.  Here it is:
+</p>
+<img class="diagram ideabody" src="light_codeClass.png">
+<img class="diagram ideabody" src="light_codeVoid.png">
+<p class="text ideabody">I set up my code with two classes: one called LightSensor, which organizes all the code related to the photoresistor, and one called LED, organizing all the code related to the LED output.  The LightSensor class essentially reads the voltage output of the photoresistor,
+    and the LED class has an 'on' function and an 'off' function.  My code is set up so that the lightbulb turns on when the photoresistor senses light above a certain threshold, and the bulb turns off when light is below that threshold.  I realize now that it would make more sense for the 
+    lightbulb to turn on in low light, but I did not think of that at the time.  Here is a video of the testing of the sensor.
+</p>
+<video class="img ideabody" controls>
+    <source src="led_light.mp4" type="video/mp4">
+    </video> 
+<h4 class="text ideabody">Part 3: CAD Files for CNC</h4>
+<p class="text ideabody">I still have to prepare my CAD files for next week.</p>
+
+
