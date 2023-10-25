@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<title>Week 7</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link href="./style.css" rel="stylesheet">
+
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div style="align-items: left; justify-content:left;" class="container-fluid">
+      <h3 class="nav-title">PS70: Intro to Digital Fabrication</h3>
+      <div class="navbar-nav">
+        <h4><a class="nav-link" href="./index.html">Home</a></h4>
+        <h4><a class="nav-link" href="./about.html">About</a></h4>
+        <h4><a class="nav-link" href="./finalproject.html">Final</a></h4>
+      </div>
+    </div>
+  </nav>
+
+<h3 class="text ideabody">Week 7: Electric Output Devices </h3>
+<h4 class="text ideabody">Minimum Viable Product</h4>
+<p class="text ideabody">For my MVP, I planned to make a set of motorized shutters that would open and close on a regular schedule.  While for my final project it is important that the shutters move depending on input from light and heat sensors,
+    for the MVP I decided to focus more so on the mechanical aspect to make sure I could get that working.  I used the laser cutter to make the louvers and frame out of cardboard (in the final product I will use wood, but for right now it was just 
+    simpler to use cardboard).  I used the drill to make evenly spaced holes along each side of the frame.  Then I attached each louver to two dowels on either end and stuck the dowels through the holes, allowing them to rotate freely (see photo below).
+</p>
+<img class="image ideabody" src="shutter1.png">
+<p class="text ideabody">The next step was to get all the louvers hooked up to a central rod so they can move in unison.  I made the rod using a thin dowel.  In connecting each louver to the dowel, it is important that the attachment is tight enough such 
+    that the movement of the dowel prompts rotation of the louver, and yet there must also be some degree of freedom because the louvers do not turn with constant radius, and so if the joints are too tight the movement is prohibitively restricted.  With real plantation
+    shutters, the rod is attached to the louvers using small interlocked eyelets (one attached to the louver and one to the rod).  Since I do not have any of those eyelets, I fashioned my own out of wire.  In the future, I believe it might be advantageous to design and 3D print 
+    these so they are more standardized (and perhaps also shape the louvers differently such that they include a small loop for the dowel's eyelet to connect to, rather than being a mere rectangle).  Nevertheless, for the MVP, the wire worked fine.  I made 
+    loops of thicker wire that were glued to the edge of each louver, and I friction-wrapped thinner wire around the dowel to make sure it stayed in place and then looped this thinner wire through the hook attached to the louver.  It took some trial and 
+    error to attach them all properly, but by the end I had a set of 9 louvers that could all be rotated simultaneously simply by moving the dowel up or down.
+</p>
+<p class="text ideabody">After this, the next step was to motorize it.  I decided to use a stepper motor because the positional specificity is helpful in terms of exactly shifting the shutters to display one side of the louvers versus the other side.
+     When opening and closing the dowels by hand, it is easy to do so simply by pushing the dowel up or moving it down.  However, when we do this with our hand, we are instinctively moving the dowel
+   in an arcing motion to accomodate for the changing radius of rotation of the louvers--that is to say, simply pushing the dowel in a straight line is insufficient to properly rotate the dowels.  Moreover, I had trouble visualizing how the rotational motion
+   of the motor would translate to the semi-linear motion of the dowel.  I considered attaching the dowel to a length of string which would be wound around the motor axle.  Thus, the motor spinning would shorten the length of string, pulling the dowel towards it and 
+   closing the shutters.  However, while this works for closing the shutters, it would not work to open them back up because a string can only be pulled, not pushed.  Because of these issues, I decided instead to attach the motor to the axle of one of the louvers.
+   This works because by rotating one of the louvers, all the other louvers rotate simultaneously since they are all connected thanks to the central dowel.  Moreover, the rotational movement of the motor axle is much more compatible with the rotational motion of the louver.
+</p>
+<p class="text ideabody">At first, I tried to attach the motor to the dowel of the louver using a straw as a connector and gluing them both into the straw.  This had worked with my kinetic sculpture, but since the stepper motor seems to move with greater force than the smaller motor
+    I had been using previously, the straw method no longer worked (the glue was not enough to join the straw with the motor axle).  As a result, it was necessary to 3D print a small attachment to connect the motor to the louver's dowel.  I used calipers to measure the dimensions of the motor
+    axle and designed a joiner accordingly.  Here is the piece I printed:
+</p>
+<img class="image ideabody" src="motor_connect_stl.png">
+<img class="image ideabody" src="motor_connect_prusa.png">
+<p class="text ideabody">With this joining piece, whose hole was the exact size and shape of the motor axle, it wasn't even necessary to use glue: I could simply jam the axle into the hole, and it was a perfectly tight fit.</p>
+<p class="text ideabody">The next problem I encountered was that the axle of the louver was slipping with respect to the louver itself.  I had stuck the dowel into the side of the cardboard and secured it with glue, but this connection also was not sufficiently strong.  This meant that
+    the motor was turning but the louver was not actually rotating with it.  I decided to print another joiner piece to connect the louver to its dowel, so it had to be able to grip the louver and also provide a hole in which to insert the dowel.  Here is the piece I ended up creating.
+</p>
+<img class="image ideabody" src="joint_prusa.png">
+<img class="image ideabody" src="joint_stl.png">
+<p class="text ideabody">This piece was able to clamp to the side of the louver as well as hold onto the dowel, all without any glue, because the dimensions matched exactly.  With the addition of these two joiner pieces, I was finally successful at connecting the motor to the louver.
+   Now, the turning of the motor rotated the louver, which in turn rotated all the rest simultaneously.  Thus, the motor was able to close the shutters with one side of the louvers facing out, then rotate them 180 degrees until they were closed with the other side of the louvers facing out.
+   I decided to paint one side of the louvers white to illustrate the fundamental purpose of my project.  I did a pretty messy job with the painting, but it gets the point across.
+</p>
+<p class="text ideabody">In terms of programming the motion of the motor, I looked up the documentation for my speciic type of stepper motor, which was the 28BYJ-48 Stepper Motor with ULN2003 Driver.  I set up the circuit according to the schematic shown below:
+</p>
+<img class="image ideabody" src="stepper_scheme.png">
+<p class="text ideabody">I borrowed the following example code from the documentation to get the motor spinning clockwise, then counterclockwise on a regular predefined schedule.  This worked very nicely to demonstrate the mechanical feasibility of my project thus far.</p>
+<img class="diagram ideabody" src="examplecode1.png">
+<p class="text ideabody">I then adapted this code to include class organization, based on what I had learned last week setting up my light sensor.  I believe this should work; however, I have not yet had time to test it out.</p> 
+<img class="diagram ideabody" src="class_code_trial.png">
+<p class="text ideabody">I realize I still need to adapt this code to get rid of the delay feature.  However, since ultimately the motion of the motor will be dependent on signals from outside sensors, rather than on a predetermined schedule, I figure I will just get rid of the delay
+    function at the same time that I program it to respond to sensor data.  I have not yet had time to do this, but will continue to work on it.  I envision a system involving a set of if statements, where the Arduino will be periodically reading signals from a set of light and heat sensors.  
+    If the readings reach above a certain threshold, then the "counterclockwise" function will be triggered (or whichever direction is appropriate) and the shutters should remain in that position until the condition of being above the threshold is no longer true.  Whenever the reading drops below
+    the threshold, then the "clockwise" function should be triggered, and the shutters should remain in that position until the threshold condition is once again no longer true.  I will begin working on this aspect of the coding this coming week.  In terms of output device, I currently have 
+    the stepper motor and motor driver set up such that a row of 4 LED lights turn on whenever the motor is properly connected to power.  In the future, I want to make it such that the lights only turn on when the motor is actively turning, thus acting as a signal to bystanders that the shutters are at work.
+</p>
+<p class="text ideabody">There is definitely still a lot of work to be done.  However, I am pleased with what I have done with the MVP so far, and I feel I have successfully proven that the mechanical aspect of my project will work.  Here is a video of the shutters in action.</p>
+<video class="diagram ideabody" controls>
+    <source src="shutter_proto.mp4" type="video/mp4">
+    </video> 
+<h4 class="text ideabody">Considerations for Final Product</h4>
+<ul class="text ideabody">
+    <li>Obviously, cardboard will not work for what is meant to serve as a roof--I will need to build the final product out of wood,  This means that I will have to think more carefully about how to connect the louvers to the dowel.  It will no longer be possible to merely stick some 
+        wire as a hook into the cardboard louver; I will probably have to design some sort of 3D printed eyelet.  Luckily, I've already designed the 3D printed joint to connect the louvers to their axle dowels, so I will just be able to replicate that for all the louvers.
+    </li>
+    <li>I definitely want to paint the louvers before I attach them, since painting them while they were already attached was very messy and imprecise.  I believe I could make it a lot neater if I painted them while they were still individual pieces.</li>
+    <li>As I mentioned, I will need to add heat and light sensors and program the motion of the motor to be dependent on these signals.</li>
+    <li>I want the frame of the shutters to be thicker/wider so that when the frame is lying flat, the louvers can easily perform a full rotation without scraping against the tabletop (or whatever surface they are resting on), which impedes their motion.</li>
+    <li>I want to build a housing for the motor that will keep it both connected to the frame and also secured in place so that when it spins, it is only spinning the louver dowel (as opposed to also rotating itself).</li>
+    <li>I want to think about some sort of user interface so that the user knows what the shutters are doing.  For example, some type of screen that will display something like: "The lighting and temperature today is above {threshold}, hence your shutters have turned to white in order to reflect away sunlight
+        and keep your house cool."
+    </li>
+</ul>
