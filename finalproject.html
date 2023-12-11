@@ -442,7 +442,7 @@
   void loop() {
   int valuesL = Sensor1.reading();
   int valuesT = Sensor2.reading();
-  printData(valuesL, valuesT/10-60, valuesT%10);
+  printData(valuesL, valuesT/10-60, valuesT%10); //calibrating and converting temperature reading to Celsius
   Serial.println(valuesL);
   Serial.println(valuesT/10.0);
   if ((valuesT>876) and (color == 0)) {
