@@ -167,7 +167,7 @@
     </li>
 </ul>
 <h4 class="text ideabody"><font color="navy">12.10.2023</font></h4>
-<h4 class="text ideabody">Physical Construction</h4>
+<h4 class="text ideabody">Part 1: Physical Construction</h4>
 <p class="text ideabody">Since the whole point of my project is to produce tiles that will be mounted onto a roof, the first step of moving fom the minimum viable product, shown above, 
   to the final version was to change the material from cardboard to something less flimsy and more durable that could (more or less) withstand the elements.  
   I chose to use wood.  I was able to adapt my original Fusion360 model for the frame and louvers and transfer it to wood.  For the side planks of the frame in the cardboard version, 
@@ -254,7 +254,7 @@
   I would have to find some way to install the motor within the outer frame.
 </p>
 <p class="text ideabody">I used <a href="https://lastminuteengineers.com/28byj48-stepper-motor-arduino-tutorial/">this motor</a>, which luckily 
-  is pretty flat and compact.  Through talking with with Bobby and Nathan, we came up with the idea of attaching the stepper motor to the inside of 
+  is pretty flat and compact.  Through talking with Bobby and Nathan, we came up with the idea of attaching the stepper motor to the inside of 
   the frame, and just shortening the length of the louver to which it would be attached so that it could all fit.  I connected the motor to the louver 
   with a 3D printed piece modified from the original louver axles.  Basically, I kept the clamping part of the joint, but changed the dowel 
   part to a tube shape that exactly matched the dimensions of the motor axle so it could be inserted and stay in place without any glue.  
@@ -270,7 +270,7 @@
   in place.  I held off on attaching the bottom piece of the frame because I wanted to leave space to fit the electronic components. 
   At this point, the physical construction of my shutters was finished! 
 </p>
-<h4 class="text ideabody">Electronic Components</h4>
+<h4 class="text ideabody">Part 2: Circuitry</h4>
 <p class="text ideabody">Now it was time to wire my shutters.  I used an Arduino Uno microcontroller and a ULN2003 motor driver.  For my 
   light sensor, I used <a href="https://www.digikey.com/en/products/detail/nte-electronics,-inc/02-LDR12/15648872?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax_DK%2BSupplier_Focus%20Suppliers&utm_term=&utm_content=&utm_id=go_cmp-19976712210_adg-_ad-__dev-c_ext-_prd-15648872_sig-CjwKCAiAg9urBhB_EiwAgw88mbRHM7DbDmL2wMHzd8BUZSbIdPWFAmqturOV7Y-M0Ej-R3DuUhYU5hoC2zUQAvD_BwE&gad_source=1&gclid=CjwKCAiAg9urBhB_EiwAgw88mbRHM7DbDmL2wMHzd8BUZSbIdPWFAmqturOV7Y-M0Ej-R3DuUhYU5hoC2zUQAvD_BwE">this photoresistor</a> 
   and for my heat sensor, I used <a href="https://www.digikey.com/en/products/detail/microchip-technology/MCP9700A-E%2FTO/1212508?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Supplier_Focus%20Supplier&utm_term=&utm_content=&utm_id=go_cmp-20243063242_adg-_ad-__dev-c_ext-_prd-1212508_sig-CjwKCAiAg9urBhB_EiwAgw88mQMPDz0FseSdVgWzOPC4dLFbTDATlSJi48DQBc3wnN32tltuA_xChBoCPzMQAvD_BwE&gad_source=1&gclid=CjwKCAiAg9urBhB_EiwAgw88mQMPDz0FseSdVgWzOPC4dLFbTDATlSJi48DQBc3wnN32tltuA_xChBoCPzMQAvD_BwE">this thermistor</a>. 
@@ -279,7 +279,7 @@
   to the Arduino.  The Arduino would tell the stepper motor to turn a certain amount of steps (which I determined by trial and error) whenever 
   the sensor readings crossed a certain threshold.  At first, I programmed it to just take into account the light sensor readings.  When it was 
   bright out, the shutters would display their white side to reflect away the light.  When it was darker out, the shutters would display their dark side 
-  to absorb whatever light did exist.  Here is a picture of my setup at this point.
+  to absorb whatever light did exist.  Here is a picture of my setup at this point (I will include all my code in the Code Section at the end).
 </p>
 <img class="image ideabody" src="circuitry1.png">
 <p class="text ideabody">Here is a video of it working!  It responds to the higher light input (the phone flashlight) by turning white.  Once
@@ -288,12 +288,38 @@
 <video class="image ideabody" controls>
   <source src="lightresponse.mp4" type="video/mp4">
   </video> 
-<p class="image ideabody">At this point, I hadn't yet programmed the microcontroller to respond to the heat sensor readings, but I was using 
-  Serial print to read them out and I could see that they made sense and varied in response to heat changes (ie., my hand holding the sensor to 
+<p class="text ideabody">At this point, I hadn't yet programmed the microcontroller to respond to the heat sensor readings, but I was using 
+  Serial print to read them out and I could see that they made sense and varied in response to temperature changes (ie., my hand holding the sensor to 
   heat it up.) Since the circuitry was working on the breadboard, the next step was to solder it to a smaller breadboard so it would be more sturdy 
   and compact.  I had no experience with soldering other than the single pin we practiced in class, so this was a big learning curve for me.  I found 
-  the whole process extremely satisfying and fun.  
+  the whole process extremely satisfying and fun.  Here are some pictures of my initial soldering.  As you can see, I first soldered the heat sensor 
+  and the light sensor to two different boards in case I would want to separate the two sensors to measure at two different places.  I ultimately 
+  discarded this idea, so had to unsolder one of the boards and combine them onto one.
 </p>
+<img class="image ideabody" src="solder1.png">
+<img class="image ideabody" src="solder2.png">
+<img class="image ideabody" src="solder3.png">
+<p class="text ideabody">Next, I decided to add a screen that would display the light and temperature readings.  Bobby helped me set up a small OLED screen, 
+  and it ended up being a lot more intuitive than I had feared.  Through reading the documentation, I learned how to print text onto the screen, how to 
+  shift where the text was displayed, and how to make scrolling text.  This allowed me not only to display the readings, but also, whenever the 
+  shutters were in the act of flipping, the screen would scroll either "Turning to white..." or "Turning to black..." to inform the user.  (I will 
+  show my code for this and everything else in the Code section at the end of the page.) 
+  I soldered this screen to the same breadboard as the sensors, as shown here.  At this point, my circuitry was quite compact except for one problem: the pin-socket wires connecting the Arduino to 
+  the motor driver were way too long, making it hard to enclose the circuitry.  To solve this, I unsoldered the Ground and Voltage pins from
+  the motor driver and replaced them with normal wires, whose length I could adjust.  Now I had compact circuitry!  The next step was to enclose 
+  all of it in some housing to hide the mess.  Here is a picture of my completed circuitry.  You can see how the board contains all three elements:
+  the OLED screen, the thermistor, and the photoresistor.
+</p>
+<img class="image ideabody" src="solderedbb.png">
+<h4 class="text ideabody">Part 3: Electronics Housing</h4>
+<p class="text ideabody">There were three main considerations for my housing: it has to enclose the wires, solderable breadboard, microcontroller and 
+  motor driver while still allowing the motor wires to enter and keeping the HDMI port free to access; it has to have cutouts so that the 
+  light and temperature sensors can still be exposed to the outside environment; and it is preferably at least somewhat weather proof to 
+  protect the electronic elements from the outside environment.  To these ends, I decided to laser cut a wooden box with cutouts.  I first modeled 
+  this with a cardboard box.
+</p>
+
+
 
 
 
