@@ -104,11 +104,73 @@
     <p class="text ideabody">I have managed to build a set of shutters (out of cardboard) and get the mechanical/motorized motion of the shutters to work.  See Week 7 Documentation for more details. 
       Here is a video of the MVP working.
     </p>
-    <video class="diagram ideabody" controls>
+    <video class="image ideabody" controls>
       <source src="shutter_proto.mp4" type="video/mp4">
       </video> 
-
-
+<h4 class="text ideabody"><font color="navy">12.10.2023</font></h4>
+<h4 class="text ideabody">Physical Construction</h4>
+<p class="text ideabody">Since the whole point of my project is to produce tiles that will be mounted onto a roof, the first step of moving fom the minimum viable product, shown above, 
+  to the final version was to change the material from cardboard to something less flimsy and more durable that could (more or less) withstand the elements.  
+  I chose to use wood.  I was able to adapt my original Fusion360 model for the frame and louvers and transfer it to wood.  For the side planks of the frame in the cardboard version, 
+  I did not model the holes for the louver axles.  Rather, I printed out just a flat sheet of cardboard and drilled the holes in afterwards so I could better measure them
+  out by hand.  But for this version, since I already had the cardboard model to go off of, I was able to model the distance between holes in Fusion so that it printed 
+  out already with holes.  This eliminated risk of error and inaccuracy that might arise if I drilled by hand.  Another problem I had to address was that in the 
+  cardboard version, when the frame is laid on a flat surface, the louvers will scrape against the surface as they flip, which impedes their motion.
+  I thus had to make the frame thicker so that the louvers were raised further up and could have more clearance with the ground surface, allowing 
+  them to rotate without impedance. Here is the Fusion model I used for the frame side, holes included.
+</p>
+<img class="image ideabody" src="frameside.png">
+<p class="text ideabody">Before attaching the pieces of the frame to each other, I had to suspend the louvers between them.  Here I encountered a problem.
+  In the cardboard version, the louver axle was a piece of wood dowel that I had jammed into the side of the cardboard rectangle, between the flutes.  Obviously,
+  wood does not have flutes, so I would have to come up with a different way to attach the axle.  I could not simply glue the wood dowel to one face of the shutter,
+  because then it would not rotate with a consistent radius -- that is to say, I needed to attach the dowel exactly to the edge of the wood piece and not to either face.
+  But because the wood piece is not very thick, there was not much surface area on the edge onto which to glue the dowel.  Moreover, glue would be a messy and flimsy solution. 
+  I had initially envisioned using a 3D printed connector piece like the one I had used in the cardboard version, which would clamp to the louver and have a hole on the other 
+  side into which the wooden dowel could be glued.  However, I realized that I could eliminate the need for glue by simply designing a piece that included both the clamping 
+  part and the axle dowel itself.  With this in mind, I made a joint-dowel hybrid where one half clamped to the wood piece and the other half
+  had a cylindrical protruding axle piece that could be threaded through the hole of the frame.  Here is the piece I designed in Fusion.  
+  I designed the width of the clamp part to exactly match the thickness of the wood louvers, so the piece can simply slide onto the louver and 
+  stay in place without any glue.
+ </p>
+<img class="image ideabody" src="njoint.png">
+<p class="text ideabody">I next had to devise a way to attach each louver to the central dowel that would allow all of them to move in unison.  In the cardboard model,
+  I made makeshift eyelets by wrapping pieces of wire around the central dowel and linking them to loops of wire stuck into the flutes of the cardboard louvers.
+  This worked decently well; however, it involved a lot of tedious and inefficient manual labor, and also was imperfect because sometimes the wrapped
+  wire would slip along the central dowel, preventing the louvers from all moving together in unison.  My first idea to fix this was to 3D print eyelets that 
+  were already looped through each other, thus eliminating the tiresome step of wrapping and interlinking wire by hand.  Essentially, the eyelet had to have one segment 
+  that would clamp onto each louver, and another segment that would be attached to the central dowel.  These two segments had to be connected to each 
+  other such that movement of one prompted movement of the other, but there also had to be some freedom of motion between them since the louvers do not turn 
+  with constant radius.  To this effect, this was the piece I designed (the central dowel would be threaded through the rectangular tunnel piece of each eyelet, one 
+  eyelet per louver.)
+</p>
+<img class="image ideabody" src="singleeyelet.png">
+<p class="text ideabody">The left photo below shows how the eyelet links the louver to the dowel in close up, and the right photo shows how all the 
+  louvers (with their axles attached) were attached to the central dowel.
+</p>
+<img class="image ideabody" src="eyeletattached.png">
+<img class="image ideabody" src="all1.png">
+<p class="text ideabody">However, this did not work as well as I had hoped.  The main problem was that the rectangular tunnel part was either too narrow for the central dowel,
+  such that I could not even thread them on, or it was wide enough to thread them on but then the fit was too loose such that they would slip around.
+  This was a big issue since the whole point was that the connection to the central dowel would not slip so they could move in unison.  I realized that I 
+  could solve this problem by designing a 3D printed piece that included all the eyelets as well as the central dowel, already attached.  Thus,
+  rather than having to thread each eyelet onto the central dowel and get the fit exactly right, it would just come off the 3D printer as one big 
+  piece already ready to use.  Here is the piece I ended up designing and printing.
+</p>
+<img class="image ideabody" src="doweleyelet.png">
+<p class="text ideabody">As you can see, it was a bit too big for the Prusa printer, but I was able to solve this by rotating it and having it print 
+  diagonally.  It was actually quite simple to design this in Fusion: I just took my original eyelet design, copied it nine times (once for each louver), lined 
+  them up, and then extruded a rectangular beam through the tunnels of all nine of them.  I thus had a central dowel with nine eyelets already attached.
+  This shape required a lot of supports to print, and so it was quite difficult to extricate after it finished printing.  After a lot of hard work 
+  chipping away at the plastic with scissors, wire cutters, and box cutters, I managed to get a somewhat clean product.  
+</p>
+<p class="text ideabody">The next order of business was to color my louvers.  Since the whole point of my project is that the tiles turn black 
+  when it is cold out and white when it is hot out, it is really important that they actually have these colors.  With the cardboard version, I had 
+  tried painting the louvers, which I did not enjoy because it got extremely messy and did not produce an even coat.  This time, I decided to color 
+  the louvers with vinyl stickers instead.  I used the box cutters to cut out strips of black and white vinyl of the exact size of the louvers, and stuck them 
+  to either side.  Now, my louvers were properly colored.  At this point, I was able to attach all of them to the central dowel and their own axles,
+  and then insert them properly into the frame and assemble the frame around them.
+</p>
+<p class="text ideabody">The next step was to figure out where I would place the stepper motor I was using to rotate the louvers.</p>
   </body>
 
 </html>
