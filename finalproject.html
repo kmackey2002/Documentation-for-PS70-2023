@@ -368,7 +368,12 @@
 <p class="text ideabody">I wrote pretty much all the code for this project on my own, which was satisfying.  I was able to adapt the code 
   for the voltage divider circuit from the light-dependent LEDs I had made in Week 6 (as well as a photoresistor-driven keyboard I had made 
   for GenEd1080 this year).  The code to drive the stepper motor was adapted from my code for the Minimum Viable Product in Week 7.  The code 
-  for the OLED was adapted from the documentation and example code, which Bobby showed and explained to me.  Here is the final iteration of my code.
+  for the OLED was adapted from the documentation and example code, which Bobby showed and explained to me.  The important part of the code was 
+  that the shutters needed to not only check the heat sensor reading to determine whether it was above or below the critical threshold, but it 
+  also needed to keep track of what state the shutters were in at any given moment, ie. what color they were currently displaying.  This was essential 
+  because if the temperature is above the threshold and the shutters are displaying black, the motor should rotate.  But if the temperature is above 
+  the threshold and the shutters are already displaying white, the motor should not turn.  The same is true for below the threshold.  I managed 
+  to implement this with a series of if statements and for loops.  Here is the final iteration of my code.
 </p>
 <pre class="ideabody"><code><b>
   #include Stepper.h
