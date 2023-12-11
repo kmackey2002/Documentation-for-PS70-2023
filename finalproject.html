@@ -268,7 +268,34 @@
 <img class="image ideabody" src="innermoto.png">
 <p class="text ideabody">I next attached the top piece of the frame to connect the two side pieces to each other and hold all the louvers more stably 
   in place.  I held off on attaching the bottom piece of the frame because I wanted to leave space to fit the electronic components. 
-  At this point, the physical construction of my shutters was finished! </p>
+  At this point, the physical construction of my shutters was finished! 
+</p>
+<h4 class="text ideabody">Electronic Components</h4>
+<p class="text ideabody">Now it was time to wire my shutters.  I used an Arduino Uno microcontroller and a ULN2003 motor driver.  For my 
+  light sensor, I used <a href="https://www.digikey.com/en/products/detail/nte-electronics,-inc/02-LDR12/15648872?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax_DK%2BSupplier_Focus%20Suppliers&utm_term=&utm_content=&utm_id=go_cmp-19976712210_adg-_ad-__dev-c_ext-_prd-15648872_sig-CjwKCAiAg9urBhB_EiwAgw88mbRHM7DbDmL2wMHzd8BUZSbIdPWFAmqturOV7Y-M0Ej-R3DuUhYU5hoC2zUQAvD_BwE&gad_source=1&gclid=CjwKCAiAg9urBhB_EiwAgw88mbRHM7DbDmL2wMHzd8BUZSbIdPWFAmqturOV7Y-M0Ej-R3DuUhYU5hoC2zUQAvD_BwE">this photoresistor</a> 
+  and for my heat sensor, I used <a href="https://www.digikey.com/en/products/detail/microchip-technology/MCP9700A-E%2FTO/1212508?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Supplier_Focus%20Supplier&utm_term=&utm_content=&utm_id=go_cmp-20243063242_adg-_ad-__dev-c_ext-_prd-1212508_sig-CjwKCAiAg9urBhB_EiwAgw88mQMPDz0FseSdVgWzOPC4dLFbTDATlSJi48DQBc3wnN32tltuA_xChBoCPzMQAvD_BwE&gad_source=1&gclid=CjwKCAiAg9urBhB_EiwAgw88mQMPDz0FseSdVgWzOPC4dLFbTDATlSJi48DQBc3wnN32tltuA_xChBoCPzMQAvD_BwE">this thermistor</a>. 
+  I used a breadboard to make the prototype.  I put the light sensor in a voltage divider circuit so that the Arduino could read its outputs.  The 
+  thermistor had a special pin for reading outputs so I didn't need to use a voltage divider for this one.  The motor driver was also attached 
+  to the Arduino.  The Arduino would tell the stepper motor to turn a certain amount of steps (which I determined by trial and error) whenever 
+  the sensor readings crossed a certain threshold.  At first, I programmed it to just take into account the light sensor readings.  When it was 
+  bright out, the shutters would display their white side to reflect away the light.  When it was darker out, the shutters would display their dark side 
+  to absorb whatever light did exist.  Here is a picture of my setup at this point.
+</p>
+<img class="image ideabody" src="circuitry1.png">
+<p class="text ideabody">Here is a video of it working!  It responds to the higher light input (the phone flashlight) by turning white.  Once
+  that stimulus is taken away, the louvers flip back to black.  I was pleased that it turns so smoothly and promptly.
+</p>
+<video class="image ideabody" controls>
+  <source src="lightresponse.mp4" type="video/mp4">
+  </video> 
+<p class="image ideabody">At this point, I hadn't yet programmed the microcontroller to respond to the heat sensor readings, but I was using 
+  Serial print to read them out and I could see that they made sense and varied in response to heat changes (ie., my hand holding the sensor to 
+  heat it up.) Since the circuitry was working on the breadboard, the next step was to solder it to a smaller breadboard so it would be more sturdy 
+  and compact.  I had no experience with soldering other than the single pin we practiced in class, so this was a big learning curve for me.  I found 
+  the whole process extremely satisfying and fun.  
+</p>
+
+
 
 </body>
 
