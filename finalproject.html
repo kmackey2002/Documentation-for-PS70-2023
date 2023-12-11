@@ -302,8 +302,10 @@
 <p class="text ideabody">Next, I decided to add a screen that would display the light and temperature readings.  Bobby helped me set up a small OLED screen, 
   and it ended up being a lot more intuitive than I had feared.  Through reading the documentation, I learned how to print text onto the screen, how to 
   shift where the text was displayed, and how to make scrolling text.  This allowed me not only to display the readings, but also, whenever the 
-  shutters were in the act of flipping, the screen would scroll either "Turning to white..." or "Turning to black..." to inform the user.  (I will 
-  show my code for this and everything else in the Code section at the end of the page.) 
+  shutters were in the act of flipping, the screen would scroll either "Turning to white..." or "Turning to black..." to inform the user.  
+  I wrote some simple code so that rather than displaying the raw reading of the heat sensor, which is pretty meaningless to the average person,
+  it actually displays the reading converted to Celsius.  I read the thermistor documentation and discovered that its reading goes up by 10mV for 
+  every degree Celsius, so I was able to calibrate with room temperature and convert the reading.  (I will show my code for this and everything else in the Code section at the end of the page.) 
   I soldered this screen to the same breadboard as the sensors, as shown here.  At this point, my circuitry was quite compact except for one problem: the pin-socket wires connecting the Arduino to 
   the motor driver were way too long, making it hard to enclose the circuitry.  To solve this, I unsoldered the Ground and Voltage pins from
   the motor driver and replaced them with normal wires, whose length I could adjust.  Now I had compact circuitry!  The next step was to enclose 
@@ -311,13 +313,223 @@
   the OLED screen, the thermistor, and the photoresistor.
 </p>
 <img class="image ideabody" src="solderedbb.png">
+<p class="text ideabody">I also reprogrammed the logic of my code.  Whereas originally I had the shutters responding to the light sensor readings, 
+  I realized while talking with Bobby that it actually made more sense for it to respond to the temperature readings.  After all, the tiles should 
+  be black when it is cold out to absorb whatever sunlight is present and warm the building, and they should be white when it is warm out to reflect 
+  whatever sunlight is present, thus cooling the building.  It actually doesn't matter how much light is present in terms of deciding what color 
+  the roof should be.  So I rewrote the code and readjusted the thresholds to take in the temperature inputs rather than the light inputs.  However, 
+  I still think it is useful and interesting for a user to know how bright it is today relative to other days, so I kept the display of the light 
+  sensor readings on the screen.
+</p>
 <h4 class="text ideabody">Part 3: Electronics Housing</h4>
 <p class="text ideabody">There were three main considerations for my housing: it has to enclose the wires, solderable breadboard, microcontroller and 
   motor driver while still allowing the motor wires to enter and keeping the HDMI port free to access; it has to have cutouts so that the 
   light and temperature sensors can still be exposed to the outside environment; and it is preferably at least somewhat weather proof to 
   protect the electronic elements from the outside environment.  To these ends, I decided to laser cut a wooden box with cutouts.  I first modeled 
-  this with a cardboard box.
+  this with a cardboard box so I could better visualize and play around with where the cutouts would need to be and how everything would fit together.
+  For this version, I just laser cut 4 long sides and 2 short sides to make a rectangular prism, all without any cutouts.  Then I started putting 
+  it together over the circuitry, and marking the spots at which a cutout should be placed.  I would then make the cutout using box cutters.
+  This is part of the cardboard box I was designing (you can see the HDMI port visible).
 </p>
+<img class="image ideabody" src="cardboardbox.png">
+<p class="text ideabody">When I got the cardboard box model working, I next measured the dimensions with calipers, specifically the sizes of and the distances
+   between cutouts.  I then adapted my model in Fusion to incorporate these cutouts.  This took several iterations to get perfect, since the solderable 
+   breadboard was not perfectly planar and so it was hard to get accurate measurements of how it would be projected onto the flat plane of the box.
+   After several tries, and some manual adjustment with a rasper, I managed to make the top face of the box.  It had a rectangular hole for the 
+   OLED and two smaller holes for the two sensors.  Here is the design in Fusion.
+</p>
+<img class="image ideabody" src="boxtop.png">
+<p class="text ideabody">For the left and right short side pieces, there just needed to be a cutout for the HDMI port and the motor wires, respectively.
+  Here is my design in Fusion.
+</p>
+<img class="image ideabody" src="boxside.png">
+<p class="text ideabody">These were the only two pieces that required cutouts.  The two long side pieces and the bottom piece were just 
+  rectangles of dimensions 70mm x 120mm.  I glued the OLED screen and solderable breadboard underneath the top piece, in line with its respective 
+  cutouts.  Then I attached the short side pieces.  Next, I secured the Arduino microcontroller and the motor driver to the bottom piece with 
+  glue so it wouldn't move around too much inside the enclosure.  Lastly, I attached the two long side pieces and glued everything together.  At 
+  each step, I tested the circuitry to make sure it was still working before I closed everything up and made it harder to access and fix.  
+  Everything was working well, so I closed it all up and my enclosure was done!  Here is the finished product.  I was very pleased because it 
+  is neat, compact, and portable. 
+</p>
+<img class="image ideabody" src="enclosure.png">
+<p class="text ideabody">And finally, here is a video of the final product working, with all parts completed!</p>
+<video class="diagram ideabody" controls>
+  <source src="finalshutters.mp4" type="video/mp4">
+  </video> 
+<p class="text ideabody">In this video, I first hold my hand over the light sensor to show how the light readings go down when the ambient light is 
+  blocked.  Next, I use a heat gun to heat up the temperature sensor, and you can see the readings on the screen steadily going up.  
+  Once the temperature crosses the threshold of 27.8 degrees Celsius, the shutters should flip from black to white, and they do!  
+  Furthermore, after I take away the heat gun, the temperature starts dropping back to its base state.  Once it drops below the threshold, the 
+  shutters turn back to black!  I was so happy to see the whole project come together.
+</p>
+<h4 class="text ideabody">Part 4: Code</h4>
+<p class="text ideabody">I wrote pretty much all the code for this project on my own, which was satisfying.  I was able to adapt the code 
+  for the voltage divider circuit from the light-dependent LEDs I had made in Week 6 (as well as a photoresistor-driven keyboard I had made 
+  for GenEd1080 this year).  The code to drive the stepper motor was adapted from my code for the Minimum Viable Product in Week 7.  The code 
+  for the OLED was adapted from the documentation and example code, which Bobby showed and explained to me.  Here is the final iteration of my code.
+</p>
+<pre class="ideabody"><code>
+  #include Stepper.h
+  #include SPI.h
+  #include Wire.h
+  #include Adafruit_GFX.h
+  #include Adafruit_SSD1306.h
+  
+  #define SCREEN_WIDTH 128 // OLED display width, in pixels
+  #define SCREEN_HEIGHT 64 // OLED display height, in pixels
+  
+  // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+  // The pins for I2C are defined by the Wire-library. 
+  // On an arduino UNO:       A4(SDA), A5(SCL)
+  #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+  #define SCREEN_ADDRESS 0x3C /// See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+  Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+  
+  // Define number of steps per rotation:
+  const int stepsPerRevolution = 1500;
+  
+  // Wiring:
+  // Pin 8 to IN1 on the ULN2003 driver
+  // Pin 9 to IN2 on the ULN2003 driver
+  // Pin 10 to IN3 on the ULN2003 driver
+  // Pin 11 to IN4 on the ULN2003 driver
+  
+  // Create stepper object called 'myStepper', note the pin order:
+  Stepper myStepper = Stepper(stepsPerRevolution, 8, 10, 9, 11);
+  
+  long startedScrollingWhite = 0;
+  long startedScrollingBlack = 0;
+  
+  long previousMillis = 0;
+  long interval = 100;   
+  
+  class Sensor{
+  int value;  
+  int pResistor;
+  public:
+  Sensor(int pin)  {
+      pResistor = pin;
+      pinMode(pin, INPUT);
+  
+  }
+  int reading(){
+    value = analogRead(pResistor);
+    return value;
+  }
+  };
+  
+  Sensor Sensor1(A0);
+  Sensor Sensor2(A1);
+  //LED Light1(9);
+  
+  //remember to have the light oriented correctly
+  
+  int color = 0; //keeps track of what color the shutters are currently
+  
+  void setup() {
+  // Set the speed to 5 rpm:
+  myStepper.setSpeed(18);
+   // Begin Serial communication at a baud rate of 9600:
+  Serial.begin(9600);
+  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+      Serial.println(F("SSD1306 allocation failed"));
+      for(;;); // Don't proceed, loop forever
+    }
+    // Clear the buffer
+    display.clearDisplay();
+  }
+  
+  void loop() {
+  int valuesL = Sensor1.reading();
+  int valuesT = Sensor2.reading();
+  printData(valuesL, valuesT/10-60, valuesT%10);
+  Serial.println(valuesL);
+  Serial.println(valuesT/10.0);
+  if ((valuesT>876) and (color == 0)) {
+    Serial.println("changing to white");
+    turnWhite();
+    if (millis - startedScrollingWhite == 9) {
+      display.stopscroll();
+    } 
+    myStepper.step(stepsPerRevolution);
+    color = 1;
+    Serial.println(color);
+  }
+  if ((valuesT>876) and (color == 1)) { 
+    Serial.println("staying white"); //if already white, don't make any change
+    myStepper.step(0);
+    Serial.println(color);
+  }
+  if ((valuesT<876) and (color == 0)) {
+    Serial.println("staying black"); //if already black, don't make any change
+    myStepper.step(0);
+    Serial.println(color);
+  }
+  if ((valuesT<876) and (color == 1)) {
+    Serial.println("changing to black");
+    turnBlack();
+    if (millis - startedScrollingBlack == 9) {
+      display.stopscroll();
+    }
+    myStepper.step(-stepsPerRevolution);
+    color = 0;
+    Serial.println(color);
+  }
+  
+  }
+  
+  //Screen drawing functions
+  void printData(int a, int b, int c) {
+    display.clearDisplay();
+    display.stopscroll();
+    display.setTextSize(2);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(10, 0);
+    display.cp437(true);
+  
+    display.println("Light: " + (String) a);
+    display.setCursor(0,20);
+    display.println("Temp:" + (String) b + "." + (String) c + "C"); //display the temperature as decimal
+  
+    display.display();
+    delay(2000);
+  }
+  
+  void turnWhite(void) {
+    display.clearDisplay();
+  
+    display.setTextSize(2);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(0,20);
+  
+    display.println(F("Turning to white..."));
+    display.display();      // Show initial text
+  
+  //Scroll
+    display.startscrollright(0x00, 0x0F);
+    startedScrollingWhite = millis();
+  }
+  
+  void turnBlack(void) {
+    display.clearDisplay();
+  
+    display.setTextSize(2);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(0,20);
+  
+    display.println(F("Turning to black..."));
+    display.display();      // Show initial text
+    //delay(100);
+  
+    // Scroll 
+    display.startscrollright(0x00, 0x0F);
+    startedScrollingBlack = millis();
+  
+  }
+  
+  </code></pre>
+
+
 
 
 
