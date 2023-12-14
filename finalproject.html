@@ -180,6 +180,8 @@
   them to rotate without impedance. Here is the Fusion model I used for the frame side, holes included.
 </p>
 <img class="image ideabody" src="frameside.png">
+<p class="text ideabody"><a download href="./shutterside.dxf">Download DXF file: frame side</a></p>
+<p class="text ideabody"><a download href="./slat.dxf">Download DXF file: shutter louvers</a></p>
 <p class="text ideabody">Before attaching the pieces of the frame to each other, I had to suspend the louvers between them.  Here I encountered a problem.
   In the cardboard version, the louver axle was a piece of wood dowel that I had jammed into the side of the cardboard rectangle, between the flutes.  Obviously,
   wood does not have flutes, so I would have to come up with a different way to attach the axle.  I could not simply glue the wood dowel to one face of the shutter,
@@ -193,6 +195,7 @@
   stay in place without any glue.
  </p>
 <img class="image ideabody" src="njoint.png">
+<p class="text ideabody"><a download href="./njoint.stl">Download STL file: axle clamp</a></p>
 <p class="text ideabody">I next had to devise a way to attach each louver to the central dowel that would allow all of them to move in unison.  In the cardboard model,
   I made makeshift eyelets by wrapping pieces of wire around the central dowel and linking them to loops of wire stuck into the flutes of the cardboard louvers.
   This worked decently well; however, it involved a lot of tedious and inefficient manual labor, and also was imperfect because sometimes the wrapped
@@ -209,6 +212,7 @@
 </p>
 <img class="image ideabody" src="eyeletattached.png">
 <img class="image ideabody" src="all1.png">
+<p class="text ideabody"><a download href="./singleyelet.stl">Download STL file: single eyelet</a></p>
 <p class="text ideabody">However, this did not work as well as I had hoped.  The main problem was that the rectangular tunnel part was either too narrow for the central dowel,
   such that I could not even thread them on, or it was wide enough to thread them on but then the fit was too loose such that they would slip around.
   This was a big issue since the whole point was that the connection to the central dowel would not slip so they could move in unison.  I realized that I 
@@ -218,6 +222,7 @@
 </p>
 <img class="image ideabody" src="doweleyelet.png">
 <img class="image ideabody" src="doweleyelets.png">
+<p class="text ideabody"><a download href="./doweleyelets v1.stl">Download STL file: dowel eyelets</a></p>
 <p class="text ideabody">As you can see, it was a bit too big for the Prusa printer, but I was able to solve this by rotating it and having it print 
   diagonally.  It was actually quite simple to design this in Fusion: I just took my original eyelet design, copied it nine times (once for each louver), lined 
   them up, and then extruded a rectangular beam through the tunnels of all nine of them.  I thus had a central dowel with nine eyelets already attached.
@@ -263,6 +268,7 @@
   Here is the connector I designed and printed.
 </p>
 <img class="image ideabody" src="motoconnect.png">
+<p class="text ideabody"><a download href="./motorconnector.stl">Download STL file: motor connector</a></p>
 <p class="text ideabody">Next, I sawed down one of the louvers to be shorter, then affixed the motor to the inside of the frame and attached the louver 
   to it.  (I chose to connect the motor to the bottommost louver because when I tried putting it on the middle louver, it started to interfere 
   with the motion of the surrounding louvers.)  Here you can see how it was attached.
@@ -342,10 +348,12 @@
    OLED and two smaller holes for the two sensors.  Here is the design in Fusion.
 </p>
 <img class="image ideabody" src="boxtop.png">
+<p class="text ideabody"><a download href="./boxtopfinal.dxf">Download DXF file: electronic enclosure top</a></p>
 <p class="text ideabody">For the left and right short side pieces, there just needed to be a cutout for the HDMI port and the motor wires, respectively.
   Here is my design in Fusion.
 </p>
 <img class="image ideabody" src="boxside.png">
+<p class="text ideabody"><a download href="./shutterboxside.dxf">Download DXF file: electronic enclosure side</a></p>
 <p class="text ideabody">These were the only two pieces that required cutouts.  The two long side pieces and the bottom piece were just 
   rectangles of dimensions 70mm x 120mm.  I glued the OLED screen and solderable breadboard underneath the top piece, in line with its respective 
   cutouts.  Then I attached the short side pieces.  Next, I secured the Arduino microcontroller and the motor driver to the bottom piece with 
